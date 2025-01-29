@@ -7,11 +7,10 @@ class TwillioController:
         self.twillio_service = TwillioService()
 
     def call_OpenAI_chat_controller(self):
-        data = request.get_json()  
-        prompt = data.get("prompt") 
-        print(prompt)
-        if prompt: 
-            response = self.twillio_service.call_OpenAI_chat_service(prompt)
+        body = request.form['Body'] 
+        WaId = request.form['WaId']
+        if body and WaId: 
+            response = self.twillio_service.call_OpenAI_chat_service(WaId, body)
             return jsonify({"response": response}), 200
         else:
             return jsonify({"error": "Prompt field is missing"}), 400

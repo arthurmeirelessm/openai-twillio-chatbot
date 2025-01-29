@@ -12,5 +12,5 @@ class TwillioRoutes:
         self.twillio_blueprint.add_url_rule(
             "/chat",
             view_func=self.twillio_controller.call_OpenAI_chat_controller,
-            methods=["POST"]
+            methods=["POST"],
         )
