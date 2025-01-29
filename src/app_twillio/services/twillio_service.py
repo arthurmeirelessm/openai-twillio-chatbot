@@ -11,7 +11,7 @@ class TwillioService:
 
     def get_users(self) -> str:
         """
-        Retorna um status básico.
+        Retorna u status básico.
         """
         return jsonify({"Status": 200})
 
