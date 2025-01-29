@@ -42,3 +42,10 @@ class TwillioService:
             return jsonify({"message": "Documents added successfully."}), 200
         except Exception as e:
             return jsonify({"error": str(e)}), 500
+        
+    
+    def call_OpenAI_Agent(self, prompt: str) -> str: 
+        try:
+             
+        except Exception as e: 
+            
