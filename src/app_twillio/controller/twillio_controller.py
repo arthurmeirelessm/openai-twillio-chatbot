@@ -1,26 +1,17 @@
-from flask import Blueprint
+from flask import Blueprint, request, jsonify
 from ..services.twillio_service import TwillioService
 
 
-class TwilioController:
+class TwillioController:
     def __init__(self):
-        self.twillio_blueprint= Blueprint("twilio_controller", __name__)
         self.twillio_service = TwillioService()
-        self._register_routes()
 
-    def _register_routes(self):
-        """
-        Registra as rotas no blueprint.
-        """
-        self.twillio_blueprint.add_url_rule(
-            "/", view_func=self.twillio_service.get_users, methods=["GET"]
-        )
-        self.twillio_blueprint.add_url_rule(
-            "/message", view_func=self.twillio_service.send_message, methods=["POST"]
-        )
-        self.twillio_blueprint.add_url_rule(
-            "/train", view_func=self.twillio_service.train_chroma, methods=["POST"]
-        )
-        self.twillio_blueprint.add_url_rule(
-            "/agent", view_func=self.twillio_service.call_OpenAI_Agent, methods=["POST"]
-        )
+    def call_OpenAI_chat_controller(self):
+        data = request.get_json()  
+        prompt = data.get("prompt") 
+        print(prompt)
+        if prompt: 
+            response = self.twillio_service.call_OpenAI_chat_service(prompt)
+            return jsonify({"response": response}), 200
+        else:
+            return jsonify({"error": "Prompt field is missing"}), 400

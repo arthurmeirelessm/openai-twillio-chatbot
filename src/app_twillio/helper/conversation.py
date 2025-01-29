@@ -1,4 +1,4 @@
-from langchain_openai import OpenAIEmbeddings 
+from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 from langchain_openai.chat_models import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain

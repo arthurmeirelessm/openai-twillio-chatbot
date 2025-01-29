@@ -1,11 +1,11 @@
 from flask import Flask
-from src.app_twillio.controller.twillio_controller import TwilioController
+from src.app_twillio.routes.twillio_routes import TwillioRoutes
 
 
 def create_app():
     app = Flask(__name__)
-    twillio_controller = TwilioController()
-    app.register_blueprint(twillio_controller.twillio_blueprint)
+    twillio_routes = TwillioRoutes()
+    app.register_blueprint(twillio_routes.twillio_blueprint)
     return app
 
 
